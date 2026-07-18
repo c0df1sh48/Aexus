@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Home Assistant",
+        "icon":"🏠",
+        "url":"http://homeassistant.local:8123",
+        "favorite":true
+    },
+    {
+        "name":"Navidrome",
+        "icon":"🎵",
+        "url":"https://music.aexus.xyz",
+        "favorite":true
+    }
+]
