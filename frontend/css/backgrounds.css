@@ -1,0 +1,140 @@
+.background{
+position:fixed;
+inset:0;
+z-index:-1;
+background-size:400% 400%;
+animation:gradientMove 15s ease infinite;
+transition:background .5s ease;
+}
+
+/* Aurora */
+.background.dark.aurora{
+background:linear-gradient(135deg,#0f172a,#1e40af,#3cb8ff,#4338ca);
+}
+
+.background.light.aurora{
+background:linear-gradient(135deg,#bfdbfe,#dbeafe,#93c5fd,#60a5fa);
+}
+
+/* Space */
+.background.dark.space{
+background:linear-gradient(135deg,#020617,#111827,#1e293b,#000000);
+}
+
+.background.light.space{
+background:linear-gradient(135deg,#dbeafe,#e0f2fe,#bfdbfe,#ffffff);
+}
+
+/* Ocean */
+.background.dark.ocean{
+background:linear-gradient(135deg,#0c4a6e,#0369a1,#38bdf8,#0284c7);
+}
+
+.background.light.ocean{
+background:linear-gradient(135deg,#dbeafe,#bae6fd,#7dd3fc,#f0f9ff);
+}
+
+/* Purple */
+.background.dark.purple{
+background:linear-gradient(135deg,#312e81,#6d28d9,#8b5cf6,#4c1d95);
+}
+
+.background.light.purple{
+background:linear-gradient(135deg,#ede9fe,#ddd6fe,#c4b5fd,#f5f3ff);
+}
+
+/* Midnight */
+.background.dark.midnight{
+background:linear-gradient(135deg,#020617,#0f172a,#111827,#1e293b);
+}
+
+.background.light.midnight{
+background:linear-gradient(135deg,#e2e8f0,#cbd5e1,#f8fafc,#ffffff);
+}
+
+/* Sunset */
+.background.dark.sunset{
+background:linear-gradient(135deg,#f97316,#fb7185,#ec4899,#8b5cf6);
+}
+
+.background.light.sunset{
+background:linear-gradient(135deg,#fed7aa,#fbcfe8,#fde68a,#ffffff);
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* Light Theme UI Overrides */
+.background.light~.aexus-container,
+.background.light~.aexus-container .nav-item{
+color:#111827;
+}
+
+.background.light~.aexus-container .search-box input{
+color:#111827;
+background:rgba(0,0,0,.08);
+}
+
+.background.light~.aexus-container .search-box input::placeholder{
+color:#64748b;
+}
+
+.background.light~.aexus-container .settings-card button{
+color:#111827;
+background:rgba(0,0,0,.08);
+}
+
+.background.light~.aexus-container .nav-item:hover,
+.background.light~.aexus-container .nav-item.active{
+background:rgba(30,110,213,.15);
+}
+
+.background.light~.aexus-container .topbar p,
+.background.light~.aexus-container .widget h4{
+color:#475569;
+}
+
+/* Light Theme UI */
+body.light{
+color:#111827;
+}
+
+body.light .sidebar,
+body.light .dashboard,
+body.light .app-card,
+body.light .widget,
+body.light .settings-card{
+background:rgba(255,255,255,.55);
+border-color:rgba(0,0,0,.1);
+}
+
+body.light .nav-item{
+color:#111827;
+}
+
+body.light .nav-item:hover,
+body.light .nav-item.active{
+background:rgba(30,110,213,.15);
+}
+
+body.light .search-box input{
+background:rgba(0,0,0,.08);
+color:#111827;
+}
+
+body.light .search-box input::placeholder{
+color:#64748b;
+}
+
+body.light .settings-card button{
+background:rgba(0,0,0,.08);
+color:#111827;
+}
+
+body.light .topbar p,
+body.light .widget h4{
+color:#475569;
+}
