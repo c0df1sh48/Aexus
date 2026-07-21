@@ -3,6 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const si = require("systeminformation");
 
 const app = express();
 
@@ -12,7 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 
-// Upload setup
+// =====================
+// ICON UPLOAD
+// =====================
 
 const uploadFolder = path.join(
 __dirname,
@@ -68,7 +71,9 @@ path.join(__dirname,"../frontend")
 
 
 
-// Apps file
+// =====================
+// APP DATA
+// =====================
 
 const appsFile = path.join(
 __dirname,
@@ -99,8 +104,9 @@ JSON.stringify(apps,null,4)
 
 
 
-
-// API
+// =====================
+// APP API
+// =====================
 
 
 // Get apps
@@ -115,26 +121,21 @@ getApps()
 
 
 
-
 // Add app
 
 app.post("/api/apps",(req,res)=>{
 
 let apps=getApps();
 
-
 apps.push(req.body);
 
-
 saveApps(apps);
-
 
 res.json({
 success:true
 });
 
 });
-
 
 
 
@@ -144,22 +145,18 @@ app.delete("/api/apps/:id",(req,res)=>{
 
 let apps=getApps();
 
-
 apps.splice(
 req.params.id,
 1
 );
 
-
 saveApps(apps);
-
 
 res.json({
 success:true
 });
 
 });
-
 
 
 
@@ -169,12 +166,9 @@ app.put("/api/apps/:id",(req,res)=>{
 
 let apps=getApps();
 
-
 apps[req.params.id]=req.body;
 
-
 saveApps(apps);
-
 
 res.json({
 success:true
@@ -185,7 +179,10 @@ success:true
 
 
 
-// Upload icon
+// =====================
+// ICON UPLOAD API
+// =====================
+
 
 app.post(
 "/api/upload-icon",
@@ -204,7 +201,6 @@ error:"No image uploaded"
 }
 
 
-
 res.json({
 
 success:true,
@@ -220,7 +216,208 @@ path:
 
 
 
-// Start
+// =====================
+// SYSTEM INFO API
+// =====================
+
+
+app.get("/api/system", async (req,res)=>{
+
+try{
+
+
+const cpu =
+await si.currentLoad();
+
+
+const memory =
+await si.mem();
+
+
+const storage =
+await si.fsSize();
+
+
+const os =
+await si.osInfo();
+
+
+const time =
+await si.time();
+
+
+const temp =
+await si.cpuTemperature();
+
+
+const network =
+await si.networkStats();
+
+
+const load =
+await si.currentLoad();
+
+
+const networkInterfaces =
+await si.networkInterfaces();
+
+
+
+// Find local IP
+
+const ip =
+networkInterfaces.find(
+i => i.ip4 && !i.internal
+)?.ip4 || "Unknown";
+
+
+
+res.json({
+
+
+
+cpu:
+Math.round(
+cpu.currentLoad
+),
+
+
+
+memory:{
+
+used:
+Math.round(
+memory.used /
+1024 /
+1024 /
+1024
+),
+
+total:
+Math.round(
+memory.total /
+1024 /
+1024 /
+1024
+)
+
+},
+
+
+
+storage:{
+
+used:
+Math.round(
+storage[0].used /
+1024 /
+1024 /
+1024
+),
+
+total:
+Math.round(
+storage[0].size /
+1024 /
+1024 /
+1024
+)
+
+},
+
+
+
+hostname:
+os.hostname,
+
+
+
+platform:
+os.platform,
+
+
+
+kernel:
+os.kernel,
+
+
+release:
+os.release,
+
+
+
+uptime:
+Math.floor(
+time.uptime /
+3600
+),
+
+
+
+// Extra information
+
+
+ip:
+ip,
+
+
+
+temperature:
+temp.main || 0,
+
+
+
+network:{
+
+download:
+network[0]?.rx_sec || 0,
+
+upload:
+network[0]?.tx_sec || 0
+
+},
+
+
+
+load:
+Number(
+load.currentLoad.toFixed(1)
+)
+
+
+
+});
+
+
+}catch(error){
+
+
+console.error(
+"System info error:",
+error
+);
+
+
+res.status(500).json({
+
+error:
+"Failed to get system info"
+
+});
+
+
+}
+
+
+});
+
+
+
+
+// =====================
+// START SERVER
+// =====================
+
 
 app.listen(PORT,()=>{
 
