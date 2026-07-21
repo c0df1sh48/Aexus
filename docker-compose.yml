@@ -1,0 +1,16 @@
+services:
+
+  aexus:
+    image: aexus
+    container_name: aexus
+    restart: unless-stopped
+
+    ports:
+      - "1000:1000"
+
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/uploads:/app/uploads
+
+    environment:
+      - TZ=America/New_York

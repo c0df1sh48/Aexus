@@ -1,8 +1,21 @@
-hey to start the thing rn i dont *think* it works with docker bc we are pre-alpha but um if you wanna try to this is how to start the node server
+# Aexus
 
+A self-hosted dashboard for your apps and server.
 
-```cd backend```
+## Install
 
-```npm install```
+Clone the repo:
 
-```node server.js```
+git clone https://github.com/c0df1sh48/Aexus
+
+Enter folder:
+
+cd aexus
+
+Start:
+
+docker compose up -d
+
+Open:
+
+http://SERVER-IP:1000
