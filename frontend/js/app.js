@@ -34,19 +34,76 @@ console.error("Failed to load apps:",error);
 }
 
 function renderApps(list){
+
 appGrid.innerHTML="";
+
 list.forEach(app=>{
+
 const card=document.createElement("div");
+
 card.className="app-card";
-card.innerHTML=`
-<div class="icon">${app.icon}</div>
-<h4>${app.name}</h4>
+
+
+let iconHTML;
+
+
+if(app.iconType==="image"){
+
+iconHTML=`
+<img 
+src="${app.icon}" 
+class="icon"
+>
 `;
+
+}else{
+
+iconHTML=`
+<div class="icon">
+${app.icon}
+</div>
+`;
+
+}
+
+
+
+card.innerHTML=`
+
+<div class="app-card-header">
+
+<div class="app-icon">
+${app.iconType==="image"
+?
+`<img src="${app.icon}">`
+:
+app.icon || "📦"
+}
+</div>
+
+<h4>${app.name}</h4>
+
+</div>
+
+`;
+
+
+
 card.onclick=()=>{
-window.open(app.url,"_blank");
+
+window.open(
+app.url,
+"_blank"
+);
+
 };
+
+
 appGrid.appendChild(card);
+
+
 });
+
 }
 
 function setupSearch(){

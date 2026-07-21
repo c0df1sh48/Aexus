@@ -7,13 +7,19 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/backgrounds.css">
 </head>
+
 <body>
+
 <div class="background"></div>
+
 <div class="aexus-container">
+
 <aside class="sidebar">
+
 <div class="logo">
 <h1>Aexus</h1>
 </div>
+
 <nav>
 <button class="nav-item active" data-page="homePage">🏠 Home</button>
 <button class="nav-item" data-page="favoritesPage">⭐ Favorites</button>
@@ -21,144 +27,476 @@
 <button class="nav-item" data-page="systemPage">📊 System</button>
 <button class="nav-item" data-page="settingsPage">⚙ Settings</button>
 </nav>
+
 </aside>
+
+
 <main class="dashboard">
+
+
 <section id="homePage" class="page active">
+
 <header class="topbar">
+
 <div>
 <h2>Good Evening 👋</h2>
 <p>Welcome back to Aexus</p>
 </div>
+
 <div class="clock">8:47 PM</div>
+
 </header>
+
+
 <div class="search-box">
 <input type="text" placeholder="Search apps...">
 </div>
+
+
 <section class="section">
+
 <div class="widget-grid">
+
 <div class="widget">
 <h4>CPU</h4>
 <p>-- %</p>
 </div>
+
 <div class="widget">
 <h4>Memory</h4>
 <p>-- GB</p>
 </div>
+
 <div class="widget">
 <h4>Storage</h4>
 <p>-- %</p>
 </div>
+
 </div>
+
 </section>
+
+
 <section class="section">
+
 <h3>Apps</h3>
+
 <div class="app-grid" id="appGrid"></div>
+
 </section>
+
+
 </section>
+
+
+
+
 <section id="favoritesPage" class="page">
+
 <h2>⭐ Favorites</h2>
+
 <p>Your favorite apps will appear here.</p>
+
 </section>
+
+
+
+
+
 <section id="appsPage" class="page">
-<span class="section-header">
+
+
+<div class="section-header">
+
 <h2>📦 App Manager</h2>
-    <button id="openAddApp" class="primary-button">
+
+
+<button id="openAddApp" class="primary-button">
 ➕ Add App
 </button>
-</span>
+
+
+</div>
 
 
 
 
 <div id="addAppOverlay" class="hidden">
 
+
 <div id="addAppPanel">
 
-<h3 style="margin-bottom: 10px;">Add Application</h3>
+
+<h3>Add Application</h3>
+
 
 <input id="appName" placeholder="App Name">
 
+
 <input id="appURL" placeholder="App URL">
 
-<input id="appIcon" placeholder="Icon Emoji">
+
+<input id="appIcon" placeholder="Emoji Icon (leave blank for image upload)">
+
+
+
+<label>
+Upload Icon Image
+</label>
+
+
+<input id="appImage" type="file" accept="image/*">
+
 
 
 <button id="addApp" class="primary-button">
 Save App
 </button>
 
+
+
 <button id="closeAddApp" class="primary-button">
 Cancel
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+
 
 
 <div class="section">
 
+
 <h3>Installed Apps</h3>
 
+
 <div id="managerApps" class="app-grid"></div>
+
 
 </div>
 
 
 </section>
-<section id="systemPage" class="page">
-<h2>📊 System</h2>
-<p>Server statistics and monitoring.</p>
+
+
+
+
+
+
+
+<section id="appDetailsPage" class="page">
+
+
+
+<div class="details-header">
+
+
+<button class="primary-button" id="backToApps">
+⬅ Back
+</button>
+
+
+
+<div class="details-actions">
+
+
+<button class="primary-button" id="editApp">
+✏️ Edit App
+</button>
+
+
+
+<button class="danger-button" id="deleteDetailApp">
+🗑 Delete App
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="settings-card app-details">
+<div class="app-title-header">
+
+
+<div id="detailIconDisplay" class="detail-icon">
+📦
+</div>
+
+
+
+<h2 id="detailTitle">
+App Details
+</h2>
+</div>
+
+
+
+
+<div class="detail-row">
+
+<p>
+URL
+</p>
+
+<span id="detailURL">
+-
+</span>
+
+</div>
+
+
+
+
+
+<div class="detail-row">
+
+<p>
+Favorite
+</p>
+
+<span id="detailFavorite">
+-
+</span>
+
+</div>
+
+
+
+
+
+<div class="detail-row">
+
+<p>
+Enabled
+</p>
+
+<span id="detailEnabled">
+-
+</span>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div id="editAppForm" class="settings-card hidden">
+
+
+<h3>
+Edit App
+</h3>
+
+
+
+<input id="detailName" placeholder="App Name">
+
+
+<input id="detailEditURL" placeholder="App URL">
+
+
+<input id="detailIcon" placeholder="Emoji Icon">
+
+
+
+
+
+<label>
+
+<input type="checkbox" id="detailFavoriteEdit">
+
+Favorite
+
+</label>
+
+
+
+
+<label>
+
+<input type="checkbox" id="detailEnabledEdit">
+
+Enabled
+
+</label>
+
+
+
+
+
+<button class="primary-button" id="saveApp">
+💾 Save Changes
+</button>
+
+
+
+<button class="primary-button" id="cancelEdit">
+❌ Cancel
+</button>
+
+
+
+</div>
+
+
+<div id="deleteOverlay" class="hidden">
+
+<div id="deletePanel">
+
+<h2>🗑 Delete App</h2>
+
+<p>
+Type the app name to confirm deletion.
+</p>
+
+<input id="deleteConfirmInput" placeholder="Enter app name">
+
+
+<button id="confirmDelete" class="danger-button">
+Delete Permanently
+</button>
+
+
+<button id="cancelDelete" class="primary-button">
+Cancel
+</button>
+
+
+</div>
+
+</div>
 </section>
+
+
+
+
+
+
+
+<section id="systemPage" class="page">
+
+
+<h2>📊 System</h2>
+
+<p>Server statistics and monitoring.</p>
+
+
+</section>
+
+
+
+
+
+
+
 <section id="settingsPage" class="page">
+
 
 <h2>⚙ Settings</h2>
 
+
+
 <div class="settings-card">
 
+
 <h3>Appearance</h3>
+
+
 
 <button id="darkMode">
 🌙 Dark
 </button>
 
+
+
 <button id="lightMode">
 ☀️ Light
 </button>
 
+
+
 </div>
+
+
+
+
 
 <div class="settings-card">
 
+
 <h3>Wallpaper</h3>
+
+
 
 <button class="wallpaper" data-wallpaper="aurora">
 🟦 Aurora
 </button>
 
+
+
 <button class="wallpaper" data-wallpaper="space">
 🌌 Space
 </button>
+
+
 
 <button class="wallpaper" data-wallpaper="ocean">
 🌊 Ocean
 </button>
 
+
+
 <button class="wallpaper" data-wallpaper="purple">
 🟣 Purple
 </button>
+
+
 
 <button class="wallpaper" data-wallpaper="midnight">
 ⚫ Midnight
 </button>
 
+
+
 </div>
 
+
+
 </section>
+
+
+
+
 </main>
+
 </div>
+
+
+
+
+
+<script src="js/ui.js"></script>
 <script src="js/app.js"></script>
 <script src="js/manager.js"></script>
+<script src="js/details.js"></script>
 <script src="js/appearence.js"></script>
+
+
 </body>
 </html>
