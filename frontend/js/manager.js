@@ -1,11 +1,13 @@
-let managerApps=[];
+window.managerApps=[];
 
 
-async function loadApps(){
+async function loadManagerApps(){
 
-const response = await fetch("/api/apps");
+const response =
+await fetch("/api/apps");
 
-managerApps = await response.json();
+window.managerApps =
+await response.json();
 
 renderManager();
 
@@ -13,10 +15,11 @@ renderManager();
 
 
 
-
 function renderManager(){
 
-const box=document.getElementById("managerApps");
+const box =
+document.getElementById("managerApps");
+
 
 if(!box)return;
 
@@ -24,23 +27,7 @@ if(!box)return;
 box.innerHTML="";
 
 
-managerApps.forEach((app,index)=>{
-
-
-let icon;
-
-
-if(app.iconType==="image"){
-
-icon=
-`<img src="${app.icon}" class="icon">`;
-
-}else{
-
-icon=
-`<div class="icon">${app.icon}</div>`;
-
-}
+window.managerApps.forEach((app,index)=>{
 
 
 box.innerHTML+=`
@@ -54,9 +41,10 @@ onclick="openAppDetails(${index})">
 
 <div class="app-icon">
 
-${app.iconType==="image"
+${
+app.iconType==="image"
 ?
-`<img src="${app.icon}">`
+`<img src="${app.icon}" class="app-image-icon">`
 :
 app.icon || "📦"
 }
@@ -65,7 +53,11 @@ app.icon || "📦"
 
 
 <h4>
+
 ${app.name}
+
+${app.favorite ? "⭐" : ""}
+
 </h4>
 
 
@@ -74,7 +66,12 @@ ${app.name}
 
 <p>
 ${app.url}
-</p>`
+</p>
+
+
+</div>
+
+`;
 
 
 });
@@ -88,7 +85,7 @@ ${app.url}
 
 async function uploadIcon(){
 
-const fileInput=
+const fileInput =
 document.getElementById("appImage");
 
 
@@ -100,7 +97,8 @@ return null;
 
 
 
-const formData=new FormData();
+const formData =
+new FormData();
 
 
 formData.append(
@@ -121,13 +119,14 @@ body:formData
 
 
 
-const data=
+const data =
 await response.json();
 
 
 return data.path;
 
 }
+
 
 
 
@@ -160,7 +159,7 @@ iconType="image";
 
 
 
-let app={
+const app={
 
 name:
 document.getElementById("appName").value,
@@ -192,9 +191,7 @@ await fetch(
 method:"POST",
 
 headers:{
-
 "Content-Type":"application/json"
-
 },
 
 body:
@@ -218,11 +215,17 @@ document
 
 
 
-loadApps();
+await loadManagerApps();
 
+
+if(window.loadApps){
+
+await window.loadApps();
 
 }
 
+
+}
 
 
 
@@ -240,9 +243,7 @@ addApplication
 
 
 const addPanel =
-document.getElementById(
-"addAppOverlay"
-);
+document.getElementById("addAppOverlay");
 
 
 
@@ -252,12 +253,13 @@ document
 "click",
 ()=>{
 
-addPanel.classList.remove(
-"hidden"
-);
+addPanel.classList.remove("hidden");
 
 }
+
 );
+
+
 
 
 
@@ -267,14 +269,18 @@ document
 "click",
 ()=>{
 
-addPanel.classList.add(
-"hidden"
-);
+addPanel.classList.add("hidden");
 
 }
+
 );
 
 
 
 
-loadApps();
+
+window.loadManagerApps =
+loadManagerApps;
+
+
+loadManagerApps();

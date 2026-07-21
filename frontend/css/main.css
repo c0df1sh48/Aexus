@@ -214,3 +214,85 @@ margin-top:15px;
 opacity:.7;
 font-size:14px;
 }
+#launchApp{
+background:rgba(0, 131, 33, 0.25);
+border:1px solid rgba(0, 131, 33, 0.5);
+}
+
+
+#launchApp:hover{
+background:rgba(0, 131, 33, 0.45);
+}
+/* Aexus Styled Checkbox */
+
+label{
+display:flex;
+align-items:center;
+gap:12px;
+margin:15px 0;
+cursor:pointer;
+font-size:16px;
+}
+
+
+input[type="checkbox"]{
+appearance:none;
+-webkit-appearance:none;
+width:16px;
+height:16px;
+min-width:16px;
+min-height:16px;
+margin:0;
+padding:0;
+border-radius:4px;
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.3);
+cursor:pointer;
+position:relative;
+vertical-align:middle;
+transition:.25s;
+}
+
+input[type="checkbox"]:hover{
+background:rgba(255,255,255,.25);
+}
+
+input[type="checkbox"]:checked{
+background:rgba(60,184,255,.6);
+border-color:rgba(60,184,255,.8);
+}
+
+input[type="checkbox"]:checked::after{
+content:"✓";
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-55%);
+color:white;
+font-size:11px;
+font-weight:bold;
+}
+.checkbox-label{
+    font-size:16px;
+}
+.app-icon{
+width:50px;
+height:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+overflow:hidden;
+border-radius:12px;
+}
+
+.app-image-icon{
+width:45px;
+height:45px;
+object-fit:contain;
+border-radius:10px;
+}
+
+.emoji-icon{
+font-size:40px;
+}

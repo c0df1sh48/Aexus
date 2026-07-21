@@ -1,48 +1,60 @@
 let selectedApp = null;
 
 
+
 function openAppDetails(index){
 
-selectedApp=index;
-
-const app=managerApps[index];
+selectedApp = index;
 
 
-document.getElementById("detailTitle").textContent=
+const app = managerApps[index];
+
+
+if(!app)return;
+
+
+
+document.getElementById("detailTitle").textContent =
 app.name;
 
 
 
-const iconBox=
+const iconBox =
 document.getElementById("detailIconDisplay");
+
 
 
 if(app.iconType==="image"){
 
-iconBox.innerHTML=
+iconBox.innerHTML =
 `
 <img src="${app.icon}" class="detail-image-icon">
 `;
 
 }else{
 
-iconBox.textContent=
+iconBox.textContent =
 app.icon || "📦";
 
 }
 
 
 
-document.getElementById("detailURL").textContent=
+
+document.getElementById("detailURL").textContent =
 app.url;
 
 
-document.getElementById("detailFavorite").textContent=
+
+document.getElementById("detailFavorite").textContent =
 app.favorite ? "⭐ Yes" : "No";
 
 
-document.getElementById("detailEnabled").textContent=
+
+document.getElementById("detailEnabled").textContent =
 app.enabled ? "✅ Enabled" : "Disabled";
+
+
 
 
 
@@ -51,9 +63,12 @@ document
 .classList.add("hidden");
 
 
+
 showPage("appDetailsPage");
 
+
 }
+
 
 
 
@@ -68,7 +83,7 @@ document
 ()=>{
 
 
-const app=
+const app =
 managerApps[selectedApp];
 
 
@@ -78,28 +93,35 @@ document
 
 
 
-document.getElementById("detailName").value=
+document.getElementById("detailName").value =
 app.name;
 
 
-document.getElementById("detailEditURL").value=
+
+document.getElementById("detailEditURL").value =
 app.url;
 
 
-document.getElementById("detailIcon").value=
+
+document.getElementById("detailIcon").value =
 app.icon;
 
 
 
-document.getElementById("detailFavoriteEdit").checked=
+document.getElementById("detailFavoriteEdit").checked =
 app.favorite;
 
 
-document.getElementById("detailEnabledEdit").checked=
+
+document.getElementById("detailEnabledEdit").checked =
 app.enabled;
 
 
+
 });
+
+
+
 
 
 
@@ -115,37 +137,47 @@ document
 async ()=>{
 
 
-let app=
+let app =
 managerApps[selectedApp];
 
 
-app.name=
+
+app.name =
 document.getElementById("detailName").value;
 
 
-app.url=
+
+app.url =
 document.getElementById("detailEditURL").value;
 
 
-app.icon=
+
+app.icon =
 document.getElementById("detailIcon").value;
 
 
-app.iconType="emoji";
+
+app.iconType =
+"emoji";
 
 
-app.favorite=
+
+app.favorite =
 document.getElementById("detailFavoriteEdit").checked;
 
 
-app.enabled=
+
+app.enabled =
 document.getElementById("detailEnabledEdit").checked;
+
+
 
 
 
 await fetch(
 `/api/apps/${selectedApp}`,
 {
+
 method:"PUT",
 
 headers:{
@@ -155,17 +187,30 @@ headers:{
 body:
 JSON.stringify(app)
 
-});
+}
+
+);
 
 
 
-await loadApps();
 
+// reload apps
+
+await loadManagerApps();
+
+
+
+
+// update details page
 
 openAppDetails(selectedApp);
 
 
+
 });
+
+
+
 
 
 
@@ -194,6 +239,8 @@ document
 
 
 
+
+
 // Open delete popup
 
 document
@@ -208,12 +255,14 @@ document
 .classList.remove("hidden");
 
 
+
 document
 .getElementById("deleteConfirmInput")
 .value="";
 
 
 });
+
 
 
 
@@ -237,6 +286,8 @@ document
 
 
 });
+
+
 
 
 
@@ -276,12 +327,18 @@ return;
 
 
 
+
 await fetch(
 `/api/apps/${selectedApp}`,
 {
+
 method:"DELETE"
+
 }
+
 );
+
+
 
 
 
@@ -291,11 +348,61 @@ document
 
 
 
-await loadApps();
+
+
+await loadManagerApps();
+
 
 
 
 showPage("appsPage");
 
 
+
 });
+
+
+
+
+
+
+
+
+
+// Launch app
+
+document
+.getElementById("launchApp")
+?.addEventListener(
+"click",
+()=>{
+
+
+const app =
+managerApps[selectedApp];
+
+
+
+if(app && app.url){
+
+window.open(
+app.url,
+"_blank"
+);
+
+}
+
+
+});
+
+
+
+
+
+
+
+
+// Make available to onclick cards
+
+window.openAppDetails =
+openAppDetails;

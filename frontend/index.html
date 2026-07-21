@@ -95,7 +95,11 @@
 
 <h2>⭐ Favorites</h2>
 
-<p>Your favorite apps will appear here.</p>
+<div class="section">
+
+<div class="app-grid" id="favoriteGrid"></div>
+
+</div>
 
 </section>
 
@@ -203,7 +207,9 @@ Cancel
 
 
 <div class="details-actions">
-
+<button class="primary-button" id="launchApp">
+🚀 Launch App
+</button>
 
 <button class="primary-button" id="editApp">
 ✏️ Edit App
@@ -319,10 +325,10 @@ Edit App
 
 <label>
 
+
+
+<span class="checkbox-label">Favorite</span>
 <input type="checkbox" id="detailFavoriteEdit">
-
-Favorite
-
 </label>
 
 
@@ -330,13 +336,14 @@ Favorite
 
 <label>
 
-<input type="checkbox" id="detailEnabledEdit">
 
+<span class="checkbox-label">
 Enabled
-
+</span>
+<input type="checkbox" id="detailEnabledEdit">
 </label>
 
-
+<p>&nbsp;</p>
 
 
 
