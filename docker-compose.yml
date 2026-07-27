@@ -1,7 +1,6 @@
 services:
-
   aexus:
-    image: aexus
+    build: .
     container_name: aexus
     restart: unless-stopped
 
@@ -9,6 +8,8 @@ services:
       - "1000:1000"
 
     volumes:
+      - ./backend:/app
+      - ./frontend:/app/frontend
       - ./backend/data:/app/data
       - ./backend/uploads:/app/uploads
 

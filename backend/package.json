@@ -12,8 +12,12 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcrypt": "6.0.0",
     "cors": "2.8.6",
     "express": "5.2.1",
-    "multer": "2.2.0"
+    "express-rate-limit": "8.6.0",
+    "express-session": "1.19.0",
+    "multer": "2.2.0",
+    "systeminformation": "5.33.0"
   }
 }
